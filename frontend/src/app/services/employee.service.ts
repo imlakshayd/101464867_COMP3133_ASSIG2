@@ -25,7 +25,7 @@ export class EmployeeService {
         query: GET_ALL_EMPLOYEES,
         fetchPolicy: 'network-only'
       })
-      .valueChanges.pipe(map(result => result.data.getAllEmployees));
+      .valueChanges.pipe(map(result => result.data?.getAllEmployees || []));
   }
 
   getEmployeeById(id: string) {
@@ -35,7 +35,7 @@ export class EmployeeService {
         variables: { id },
         fetchPolicy: 'network-only'
       })
-      .valueChanges.pipe(map(result => result.data.getEmployeeById));
+      .valueChanges.pipe(map(result => result.data!.getEmployeeById));
   }
 
   searchEmployees(department?: string, designation?: string) {
@@ -45,7 +45,7 @@ export class EmployeeService {
         variables: { department, designation },
         fetchPolicy: 'network-only'
       })
-      .valueChanges.pipe(map(result => result.data.searchEmployees));
+      .valueChanges.pipe(map(result => result.data?.searchEmployees || []));
   }
 
   addEmployee(employee: any) {

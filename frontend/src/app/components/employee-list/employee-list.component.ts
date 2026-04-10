@@ -66,7 +66,7 @@ export class EmployeeListComponent implements OnInit {
     this.loading = true;
     this.employeeService.getAllEmployees().subscribe({
       next: (data) => {
-        this.employees = data;
+        this.employees = data as Employee[];
         this.loading = false;
       },
       error: (err) => {
@@ -84,7 +84,7 @@ export class EmployeeListComponent implements OnInit {
     this.loading = true;
     this.employeeService.searchEmployees(this.searchDepartment, this.searchDesignation).subscribe({
       next: (data) => {
-        this.employees = data;
+        this.employees = data as Employee[];
         this.loading = false;
       },
       error: () => {

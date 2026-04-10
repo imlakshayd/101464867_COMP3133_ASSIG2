@@ -23,9 +23,11 @@ export class AuthService {
       })
       .valueChanges.pipe(
         map(result => {
-          const data = result.data.login;
-          this.setSession(data.token, data.user);
-          return data;
+          const data = result.data?.login;
+          if (data) {
+            this.setSession(data.token!, data.user);
+          }
+          return data!;
         })
       );
   }

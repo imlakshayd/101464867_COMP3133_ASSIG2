@@ -71,7 +71,7 @@ export class EditEmployeeComponent implements OnInit {
     this.employeeId = this.route.snapshot.paramMap.get('id') || '';
     if (this.employeeId) {
       this.employeeService.getEmployeeById(this.employeeId).subscribe({
-        next: (employee) => {
+        next: (employee: any) => {
           this.employeeForm.patchValue({
             first_name: employee.first_name,
             last_name: employee.last_name,

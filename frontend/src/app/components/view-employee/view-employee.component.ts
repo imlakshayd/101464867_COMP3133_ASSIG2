@@ -41,7 +41,7 @@ export class ViewEmployeeComponent implements OnInit {
     if (id) {
       this.employeeService.getEmployeeById(id).subscribe({
         next: (data) => {
-          this.employee = data;
+          this.employee = data as Employee;
           this.loading = false;
         },
         error: () => {
