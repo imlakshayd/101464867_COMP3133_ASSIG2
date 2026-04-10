@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="navbar">
+  <span class="brand" routerLink="/employees">
+    <mat-icon>business</mat-icon>
+    Employee Manager
+  </span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/employees">
+    <mat-icon>people</mat-icon> Employees
+  </button>
+  <button mat-button routerLink="/employees/add">
+    <mat-icon>person_add</mat-icon> Add Employee
+  </button>
+  <button mat-raised-button color="warn" (click)="logout()">
+    <mat-icon>logout</mat-icon> Logout
+  </button>
+</mat-toolbar>
