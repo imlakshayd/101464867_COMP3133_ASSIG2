@@ -1,0 +1,25 @@
+{
+  "name": "101464867-comp3133-assig2-backend",
+  "version": "1.0.0",
+  "description": "GraphQL backend for COMP3133 Assignment 2 - Employee Management",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "Lakshay (101464867)",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^5.5.0",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "graphql": "^16.13.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.23.0",
+    "multer": "^2.1.1"
+  }
+}
