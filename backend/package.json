@@ -14,7 +14,7 @@
   "author": "Lakshay (101464867)",
   "license": "ISC",
   "dependencies": {
-    "@apollo/server": "^5.5.0",
+    "@apollo/server": "^4.13.0",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
