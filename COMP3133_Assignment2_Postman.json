@@ -1,0 +1,317 @@
+{
+  "info": {
+    "name": "COMP3133 Assignment 2 - Employee Management API",
+    "_postman_id": "101464867-comp3133-assig2",
+    "description": "GraphQL API tests for Employee Management System\nStudent: Lakshay (101464867)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "1. Signup - Create New User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation Signup($username: String!, $email: String!, $password: String!) {\n  signup(username: $username, email: $email, password: $password) {\n    token\n    user {\n      id\n      username\n      email\n    }\n  }\n}",
+                "variables": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "2. Signup - Duplicate User (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation Signup($username: String!, $email: String!, $password: String!) {\n  signup(username: $username, email: $email, password: $password) {\n    token\n    user {\n      id\n      username\n      email\n    }\n  }\n}",
+                "variables": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "3. Login - Valid Credentials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query Login($username: String!, $password: String!) {\n  login(username: $username, password: $password) {\n    token\n    user {\n      id\n      username\n      email\n    }\n  }\n}",
+                "variables": "{\n  \"username\": \"newuser\",\n  \"password\": \"password123\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "4. Login - Invalid Credentials (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query Login($username: String!, $password: String!) {\n  login(username: $username, password: $password) {\n    token\n    user {\n      id\n      username\n      email\n    }\n  }\n}",
+                "variables": "{\n  \"username\": \"newuser\",\n  \"password\": \"wrongpassword\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "5. Add Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation AddEmployee(\n  $first_name: String!\n  $last_name: String!\n  $email: String!\n  $gender: String!\n  $designation: String!\n  $salary: Float!\n  $date_of_joining: String!\n  $department: String!\n) {\n  addEmployee(\n    first_name: $first_name\n    last_name: $last_name\n    email: $email\n    gender: $gender\n    designation: $designation\n    salary: $salary\n    date_of_joining: $date_of_joining\n    department: $department\n  ) {\n    id\n    first_name\n    last_name\n    email\n    gender\n    designation\n    salary\n    date_of_joining\n    department\n  }\n}",
+                "variables": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"email\": \"jane.smith@company.com\",\n  \"gender\": \"Female\",\n  \"designation\": \"Software Engineer\",\n  \"salary\": 85000,\n  \"date_of_joining\": \"2024-06-01\",\n  \"department\": \"Engineering\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "6. Get All Employees",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetAllEmployees {\n  getAllEmployees {\n    id\n    first_name\n    last_name\n    email\n    gender\n    designation\n    salary\n    date_of_joining\n    department\n    employee_photo\n  }\n}",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "7. Get Employee By ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetEmployeeById($id: ID!) {\n  getEmployeeById(id: $id) {\n    id\n    first_name\n    last_name\n    email\n    gender\n    designation\n    salary\n    date_of_joining\n    department\n    employee_photo\n    createdAt\n    updatedAt\n  }\n}",
+                "variables": "{\n  \"id\": \"PASTE_EMPLOYEE_ID_HERE\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "8. Search Employees by Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query SearchEmployees($department: String, $designation: String) {\n  searchEmployees(department: $department, designation: $designation) {\n    id\n    first_name\n    last_name\n    email\n    designation\n    department\n    salary\n  }\n}",
+                "variables": "{\n  \"department\": \"Engineering\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "9. Search Employees by Designation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query SearchEmployees($department: String, $designation: String) {\n  searchEmployees(department: $department, designation: $designation) {\n    id\n    first_name\n    last_name\n    email\n    designation\n    department\n    salary\n  }\n}",
+                "variables": "{\n  \"designation\": \"Developer\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "10. Update Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation UpdateEmployee(\n  $id: ID!\n  $first_name: String\n  $last_name: String\n  $designation: String\n  $salary: Float\n  $department: String\n) {\n  updateEmployee(\n    id: $id\n    first_name: $first_name\n    last_name: $last_name\n    designation: $designation\n    salary: $salary\n    department: $department\n  ) {\n    id\n    first_name\n    last_name\n    email\n    designation\n    salary\n    department\n    updatedAt\n  }\n}",
+                "variables": "{\n  \"id\": \"PASTE_EMPLOYEE_ID_HERE\",\n  \"designation\": \"Senior Software Engineer\",\n  \"salary\": 95000\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "11. Delete Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation DeleteEmployee($id: ID!) {\n  deleteEmployee(id: $id) {\n    id\n    first_name\n    last_name\n  }\n}",
+                "variables": "{\n  \"id\": \"PASTE_EMPLOYEE_ID_HERE\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphql"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "File Upload",
+      "item": [
+        {
+          "name": "12. Upload Employee Photo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "employee_photo",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/upload",
+              "host": ["{{baseUrl}}"],
+              "path": ["upload"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

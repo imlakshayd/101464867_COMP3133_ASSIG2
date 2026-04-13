@@ -10,6 +10,7 @@ import {
   DELETE_EMPLOYEE
 } from '../graphql/graphql.queries';
 import { map } from 'rxjs/operators';
+import { from } from 'rxjs';
 import { Employee } from '../models/employee.model';
 import { environment } from '../../environments/environment';
 
@@ -30,12 +31,12 @@ export class EmployeeService {
 
   getEmployeeById(id: string) {
     return this.apollo
-      .watchQuery<{ getEmployeeById: Employee }>({
+      .query<{ getEmployeeById: Employee }>({
         query: GET_EMPLOYEE_BY_ID,
         variables: { id },
         fetchPolicy: 'network-only'
       })
-      .valueChanges.pipe(map(result => result.data!.getEmployeeById));
+      .pipe(map(result => result.data!.getEmployeeById));
   }
 
   searchEmployees(department?: string, designation?: string) {

@@ -44,8 +44,9 @@ export class ViewEmployeeComponent implements OnInit {
           this.employee = data as Employee;
           this.loading = false;
         },
-        error: () => {
+        error: (err) => {
           this.loading = false;
+          console.error('View employee error:', err);
           this.router.navigate(['/employees']);
         }
       });

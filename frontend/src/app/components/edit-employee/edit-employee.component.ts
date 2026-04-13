@@ -85,9 +85,11 @@ export class EditEmployeeComponent implements OnInit {
           this.existingPhoto = employee.employee_photo || null;
           this.loadingData = false;
         },
-        error: () => {
+        error: (err) => {
           this.loadingData = false;
-          this.snackBar.open('Employee not found', 'Close', { duration: 3000 });
+          const message = err?.message || 'Employee not found';
+          console.error('Edit employee error:', err);
+          this.snackBar.open(message, 'Close', { duration: 3000 });
           this.router.navigate(['/employees']);
         }
       });
