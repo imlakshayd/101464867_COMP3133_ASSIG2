@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-url.onrender.com',
-  graphqlUrl: 'https://your-backend-url.onrender.com/graphql'
+  apiUrl: 'https://comp3133-assig2-backend-kq1l.onrender.com',
+  graphqlUrl: 'https://comp3133-assig2-backend-kq1l.onrender.comgraphql'
 };
